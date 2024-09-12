@@ -26,10 +26,10 @@
 </template>
 
 <script setup>
-import Card from "primevue/card";
 import Button from "primevue/button";
-import { useCartStore } from "../stores/cart.js";
+import Card from "primevue/card";
 import { useToast } from "primevue/usetoast";
+import { useCartStore } from "../stores/cart.js";
 
 const toast = useToast();
 defineProps({
@@ -42,7 +42,7 @@ const cartStore = useCartStore();
 const handleAddToCart = (product) => {
   cartStore.addToCart(product);
   toast.add({
-    severity: "info",
+    severity: "success",
     summary: "success",
     detail: "Add item to cart",
     life: 3000,
