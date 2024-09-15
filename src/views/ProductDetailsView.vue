@@ -16,6 +16,7 @@
 
 <script setup>
 import { useCartStore } from "@/stores/cart.js";
+import { useAuthStore } from "@/stores/auth.js";
 import Button from "primevue/button";
 import { useToast } from "primevue/usetoast";
 import { useRoute } from "vue-router";
@@ -24,9 +25,18 @@ const toast = useToast();
 const route = useRoute();
 const id = route.params.id;
 const cartStore = useCartStore();
-
+const authStore = useAuthStore();
 const productData = cartStore.getProductDetails(parseInt(id));
 const handleAddToCart = () => {
+  if (!authStore.isAuthenticated) {
+    toast.add({
+      severity: "warn",
+      summary: "Warn message",
+      detail: "Please login to add the item to your cart",
+      life: 3000,
+    });
+    return;
+  }
   cartStore.addToCart(productData);
   toast.add({
     severity: "success",

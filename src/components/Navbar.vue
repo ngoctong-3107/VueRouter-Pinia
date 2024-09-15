@@ -69,6 +69,15 @@ const items = computed(() => [
             },
           }
         : null, // Nếu đã đăng nhập, không hiển thị Login
+      authStore.isAuthenticated
+        ? {
+            label: "Profile",
+            icon: "pi pi-user",
+            command: () => {
+              router.push("/profile");
+            },
+          }
+        : null,
       authStore.isAuthenticated // Kiểm tra nếu đã đăng nhập thì hiển thị Logout
         ? {
             label: "Logout",
@@ -79,15 +88,6 @@ const items = computed(() => [
             },
           }
         : null, // Nếu chưa đăng nhập, không hiển thị Logout
-      authStore.isAuthenticated
-        ? {
-            label: "Profile",
-            icon: "pi pi-user",
-            command: () => {
-              router.push("/profile");
-            },
-          }
-        : null,
     ].filter((item) => item !== null), // Lọc ra các item không phải null
   },
 ]);

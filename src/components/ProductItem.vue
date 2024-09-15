@@ -30,6 +30,7 @@ import Button from "primevue/button";
 import Card from "primevue/card";
 import { useToast } from "primevue/usetoast";
 import { useCartStore } from "../stores/cart.js";
+import { useAuthStore } from "../stores/auth.js";
 
 const toast = useToast();
 defineProps({
@@ -39,7 +40,18 @@ defineProps({
 });
 
 const cartStore = useCartStore();
+const authStore = useAuthStore();
+
 const handleAddToCart = (product) => {
+  if (!authStore.isAuthenticated) {
+    toast.add({
+      severity: "warn",
+      summary: "Warn message",
+      detail: "Please login to add the item to your cart",
+      life: 3000,
+    });
+    return;
+  }
   cartStore.addToCart(product);
   toast.add({
     severity: "success",

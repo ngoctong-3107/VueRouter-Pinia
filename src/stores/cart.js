@@ -107,6 +107,11 @@ export const useCartStore = defineStore({
       this.saveToStorage();
     },
 
+    clearAllItems() {
+      this.cartItems = [];
+      this.saveToStorage();
+    },
+
     saveToStorage() {
       localStorage.setItem("cartItems", JSON.stringify(this.cartItems));
     },
