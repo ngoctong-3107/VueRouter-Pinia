@@ -67,6 +67,10 @@ export const useCartStore = defineStore({
 
       return total;
     },
+
+    getProductDetails: (state) => {
+      return (id) => state.products.find((p) => p.id === id);
+    },
   },
   actions: {
     addToCart(item) {
@@ -105,10 +109,6 @@ export const useCartStore = defineStore({
 
     saveToStorage() {
       localStorage.setItem("cartItems", JSON.stringify(this.cartItems));
-    },
-
-    getProductDetails(id) {
-      return this.products.find((p) => p.id === id);
     },
   },
 });
