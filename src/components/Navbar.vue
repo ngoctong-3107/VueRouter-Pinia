@@ -1,6 +1,8 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-  <nav class="bg-neutral-700 text-white p-4 flex items-center justify-between">
+  <nav
+    class="bg-neutral-700 text-white p-4 flex items-center justify-between fixed left-0 right-0 top-0 z-10"
+  >
     <div>
       <RouterLink
         to="/"
@@ -85,6 +87,15 @@ const items = computed(() => [
             command: () => {
               authStore.logout();
               router.push("/");
+            },
+          }
+        : null, // Nếu chưa đăng nhập, không hiển thị Logout
+      !authStore.isAuthenticated // Kiểm tra nếu đã đăng nhập thì hiển thị Logout
+        ? {
+            label: "Sign up",
+            icon: "pi pi-user-plus",
+            command: () => {
+              router.push("/signup");
             },
           }
         : null, // Nếu chưa đăng nhập, không hiển thị Logout

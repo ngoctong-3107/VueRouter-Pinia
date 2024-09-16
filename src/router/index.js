@@ -4,6 +4,7 @@ import { default as ProductDetailsView } from "@/views/ProductDetailsView.vue";
 import { createRouter, createWebHistory } from "vue-router";
 import { useAuthStore } from "../stores/auth";
 import ProfileView from "../views/ProfileView.vue";
+import SignupView from "../views/SignupView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -28,6 +29,11 @@ const router = createRouter({
       name: "profile",
       component: ProfileView,
       meta: { requiresAuth: true },
+    },
+    {
+      path: "/signup",
+      name: "sign-up",
+      component: SignupView,
     },
   ],
 });
