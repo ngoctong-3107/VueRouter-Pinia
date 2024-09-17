@@ -11,7 +11,7 @@ import Navbar from "./components/Navbar.vue";
     </div>
   </header>
 
-  <main class="px-5 pt-20 pb-5">
+  <main class="px-5 pt-14 pb-5">
     <RouterView />
   </main>
   <Toast />

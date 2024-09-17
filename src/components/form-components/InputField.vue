@@ -1,8 +1,6 @@
 <template>
   <div class="flex flex-col w-full mb-2">
-    <label v-if="label" :for="name" class="text-sm font-semibold">{{
-      label
-    }}</label>
+    <label-component :label="label" :for="name" class="font-semibold" />
     <input
       :type="inputType"
       v-bind="inputBinds"
@@ -16,7 +14,7 @@
 
 <script setup>
 import { ErrorMessage } from "vee-validate";
-
+import LabelComponent from "./LabelComponent.vue";
 const props = defineProps({
   label: {
     type: [String, Boolean],

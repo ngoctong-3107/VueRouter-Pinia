@@ -7,7 +7,7 @@
     <template #subtitle>${{ product.price }}</template>
     <template #content>
       <p class="m-0">
-        {{ product.description }}
+        {{ product.description.slice(0, 80) + "..." }}
       </p>
     </template>
     <template #footer>
@@ -29,8 +29,8 @@
 import Button from "primevue/button";
 import Card from "primevue/card";
 import { useToast } from "primevue/usetoast";
-import { useCartStore } from "../stores/cart.js";
 import { useAuthStore } from "../stores/auth.js";
+import { useCartStore } from "../stores/cart.js";
 
 const toast = useToast();
 defineProps({
